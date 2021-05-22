@@ -1,3 +1,4 @@
+
 public class Lanzamiento {
     private double distancia;
     private double angulo;
@@ -10,6 +11,19 @@ public class Lanzamiento {
     }
 
     public void contabilizarPuntaje(){
-        //logica del puntaje
-    }
+    
+			if (Math.abs(this.angulo) > 90) {
+				
+				this.puntaje = -1; // descalificado
+			
+			} else if (Math.abs(this.angulo) > 30) {
+				
+				this.puntaje = this.distancia * 0.8;
+
+			} else {
+				
+				this.puntaje = this.distancia;
+				
+			}
+	}
 }
