@@ -43,7 +43,7 @@ public class main {
             	
                 //torneoCaber.cargarConcursantes(new Concursante());
                 
-            	Concursante concursante = new Concursante();
+            	Concursante concursante = new Concursante(i+1);
                 for (int j = 0; j < TIROS; j++) {
                 	lineaArchivo = br.readLine();
                     if (lineaArchivo != null) {
@@ -69,6 +69,13 @@ public class main {
         }
         
         
+        PodioDistancia pd = new PodioDistancia();
+        
+        Concursante[] x = pd.obtenerGanadores(torneoCaber.getConcursantes());
+        
+        for(int j = 0; j<3; j++) {
+        	System.out.print(x[j].getIdConcursante() + " ");
+        }
         
         
         
@@ -77,17 +84,11 @@ public class main {
         
         
         // prueba borrar
-        mostrar(torneoCaber.getConcursantes());
+        // mostrar(torneoCaber.getConcursantes());
         
         
     }
     
-    // prueba borrar
-   static void mostrar(ArrayList<Concursante> x) {
-	   for(Concursante c:x) {
-		   System.out.println(c.getLanzamientos());
-	   }
-   }
     
     
 }

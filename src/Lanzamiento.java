@@ -14,7 +14,7 @@ public class Lanzamiento {
     
 			if (Math.abs(this.angulo) > 90) {
 				
-				this.puntaje = -1; // descalificado
+				this.puntaje = 0; // descalificado
 			
 			} else if (Math.abs(this.angulo) > 30) {
 				
@@ -26,4 +26,11 @@ public class Lanzamiento {
 				
 			}
 	}
+
+	public double getPuntaje() {
+		return puntaje;
+	}
+    
+    
+    
 }
