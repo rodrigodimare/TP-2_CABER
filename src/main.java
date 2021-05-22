@@ -69,6 +69,9 @@ public class main {
         }
         
         
+        
+        
+        
         PodioDistancia pd = new PodioDistancia();
         
         Concursante[] x = pd.obtenerGanadores(torneoCaber.getConcursantes());
