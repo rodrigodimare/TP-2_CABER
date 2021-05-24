@@ -1,15 +1,14 @@
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class PodioDistancia extends Podio{
-	
-
-	
 	
 	@Override
 	public Concursante[] obtenerGanadores(ArrayList<Concursante> concursantes) {
 		
 		Concursante[] ganadores = new Concursante[3];
-				
+
 		for(Concursante c: concursantes) {
 				
 			if(ganadores[0]==null || ganadores[0].puntajeTotal()<c.puntajeTotal()) {
@@ -39,7 +38,33 @@ public class PodioDistancia extends Podio{
 				}
 			}
 		}
+		generarArchivoGanadores(ganadores);
 		return ganadores;
+	}
+	
+	public void generarArchivoGanadores(Concursante[] ganadores) {
+		
+		FileWriter fichero = null;
+		PrintWriter pw = null;
+
+		try {
+			fichero = new FileWriter("archivo.out");
+			pw = new PrintWriter(fichero);
+
+            for(int i=0;i<3;i++) {
+            	pw.print(ganadores[i].getIdConcursante() + " ");
+            }
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (fichero != null)
+					fichero.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 	}
 
 }

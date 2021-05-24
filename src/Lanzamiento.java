@@ -1,36 +1,30 @@
 
 public class Lanzamiento {
-    private double distancia;
-    private double angulo;
-    private double puntaje;
+	private double distancia;
+	private double angulo;
+	private double puntaje;
 
-    public Lanzamiento(double distancia, double angulo){
-        this.distancia = distancia;
-        this.angulo = angulo;
-        contabilizarPuntaje();
-    }
+	public Lanzamiento(double distancia, double angulo) {
+		this.distancia = distancia;
+		this.angulo = angulo;
+		this.puntaje = contabilizarPuntaje();
+	}
 
-    public void contabilizarPuntaje(){
-    
-			if (Math.abs(this.angulo) > 90) {
-				
-				this.puntaje = 0; // descalificado
-			
-			} else if (Math.abs(this.angulo) > 30) {
-				
-				this.puntaje = this.distancia * 0.8;
+	public double contabilizarPuntaje() {
 
-			} else {
-				
-				this.puntaje = this.distancia;
-				
-			}
+		if (Math.abs(this.angulo) > 90) {
+			return 0; // descalificado
+		}
+
+		if (Math.abs(this.angulo) > 30) {
+			return this.distancia * 0.8;
+		}
+
+		return this.distancia;
 	}
 
 	public double getPuntaje() {
 		return puntaje;
 	}
-    
-    
-    
+
 }
