@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,9 +16,9 @@ public class Torneo {
 		concursantes = new ArrayList<Concursante>();
 	}
 
-	public void cargarConcursantes() throws FileNotFoundException {
+	public void cargarConcursantes(String nombre_archivo) throws FileNotFoundException {
 
-		Scanner entrada = new Scanner(new File("archivo.in"));
+		Scanner entrada = new Scanner(new File(nombre_archivo));
 
 		if (entrada.hasNext())
 			this.cantidadParticipantes = entrada.nextInt();
@@ -36,6 +38,39 @@ public class Torneo {
 		}
 		entrada.close();
 	}
+	
+	public void generarArchivoGanadores() {
+		
+		FileWriter fichero = null;
+		PrintWriter pw = null;
+
+		try {
+			fichero = new FileWriter("archivo.out");
+			pw = new PrintWriter(fichero);
+			
+			ArrayList<Concursante> ganadoresConsistencia = new PodioConsistencia().obtenerGanadores(concursantes);
+			ArrayList<Concursante> ganadoresDistancia = new PodioDistancia().obtenerGanadores(concursantes);
+			
+            for(int i=0;i<ganadoresConsistencia.size();i++) {
+            	pw.print(ganadoresConsistencia.get(i).getIdConcursante() + " ");
+            }
+            pw.println();
+            for(int i=0;i<ganadoresDistancia.size();i++) {
+            	pw.print(ganadoresDistancia.get(i).getIdConcursante() + " ");
+            }
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (fichero != null)
+					fichero.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
 
 	// para prueba (o no?)
 	public ArrayList<Concursante> getConcursantes() {

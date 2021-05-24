@@ -3,6 +3,7 @@ public class Lanzamiento {
 	private double distancia;
 	private double angulo;
 	private double puntaje;
+	private boolean descalificado = false;
 
 	public Lanzamiento(double distancia, double angulo) {
 		this.distancia = distancia;
@@ -13,6 +14,7 @@ public class Lanzamiento {
 	public double contabilizarPuntaje() {
 
 		if (Math.abs(this.angulo) > 90) {
+			this.descalificado = true;
 			return 0; // descalificado
 		}
 
@@ -24,7 +26,19 @@ public class Lanzamiento {
 	}
 
 	public double getPuntaje() {
-		return puntaje;
+		return this.puntaje;
+	}
+	
+	public double getAngulo() {
+		return this.angulo;
+	}
+	
+	public double getDistancia() {
+		return this.distancia;
+	}
+	
+	public boolean getDescalificado() {
+		return this.descalificado;
 	}
 
 }
