@@ -47,46 +47,30 @@ public class Concursante {
 		return false;
 	}
 	
-	private double obtenerDiferenciaAngulos() {
-    	double diferencia = 0;
-    	double promedio = 0;
-    	
-    	for (Map.Entry<Integer, Lanzamiento> entry : lanzamientos.entrySet()) {
-
-    	    promedio += entry.getValue().getAngulo();
-    	}
-    	
-    	promedio = promedio/lanzamientos.size();
-    	
-    	for (Map.Entry<Integer, Lanzamiento> entry : lanzamientos.entrySet()) {
-
-    	    diferencia += Math.abs(entry.getValue().getAngulo() - promedio);
-    	}
-    	
-    	return diferencia;
-	}
-	
-	private double obtenerDiferenciaDistancias() {
-		double diferencia = 0;
-    	double promedio = 0;
-    	
-    	for (Map.Entry<Integer, Lanzamiento> entry : lanzamientos.entrySet()) {
-
-    	    promedio += entry.getValue().getDistancia();
-    	}
-    	
-    	promedio = promedio/lanzamientos.size();
-    	
-    	for (Map.Entry<Integer, Lanzamiento> entry : lanzamientos.entrySet()) {
-
-    	    diferencia += Math.abs(entry.getValue().getDistancia() - promedio);
-    	}
-    	
-    	return diferencia;
-	}
-	
 	public double diferenciaTotal() {
-		return obtenerDiferenciaDistancias() + obtenerDiferenciaAngulos();
+		
+		double diferenciaAngulo = 0;
+		double diferenciaDistancia = 0;
+		double promedioAngulo = 0;
+		double promedioDistancia = 0;
+		
+		for (Map.Entry<Integer, Lanzamiento> entry : lanzamientos.entrySet()) {
+
+    	    promedioAngulo += entry.getValue().getAngulo();
+    	    promedioDistancia += entry.getValue().getDistancia();
+    	}
+    	
+    	promedioAngulo = promedioAngulo/lanzamientos.size();
+    	promedioDistancia = promedioDistancia/lanzamientos.size();
+    	
+    	for (Map.Entry<Integer, Lanzamiento> entry : lanzamientos.entrySet()) {
+
+    	    diferenciaAngulo += Math.abs(entry.getValue().getAngulo() - promedioAngulo);
+    	    diferenciaDistancia += Math.abs(entry.getValue().getDistancia() - promedioDistancia);
+    	}
+    	
+    	return diferenciaAngulo + diferenciaDistancia;
+		
 	}
-	
+
 }
