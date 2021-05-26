@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public abstract class Podio {
-	Concursante[] ganadores;
+	ArrayList<Concursante> ganadores;
 	
-	public abstract Concursante[] obtenerGanadores(ArrayList<Concursante> concursantes);
+	public abstract ArrayList<Concursante> obtenerGanadores(ArrayList<Concursante> concursantes);
 
 }
